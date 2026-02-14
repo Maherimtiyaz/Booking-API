@@ -5,7 +5,7 @@ from app.models import User
 from app.schemas import UserCreate, UserLogin
 from app.auth import hash_password, verify_password, create_access_token
 
-router = APIRouter()
+router = APIRouter(prefix="/users", tags=["Users"])
 
 
 # User registration
