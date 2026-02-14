@@ -21,6 +21,7 @@ def get_current_user(
             settings.SECRET_KEY,
             algorithms=[settings.ALGORITHM]
         )
+
         user_id: int = payload.get("sub")
         if user_id is None:
             raise HTTPException(status_code=401, detail="Invalid authentication credentials")
@@ -29,7 +30,15 @@ def get_current_user(
         raise HTTPException(status_code=401, detail="Invalid authentication credentials")
     
     user = db.query(User).filter(User.id == user_id).first()
+
     if user is None:
         raise HTTPException(status_code=404, detail="User not found")
     
     return user
+
+# Dependency to check admin role
+
+def require_admin(current_user: User = Depends(get_current_user)):
+    if current_user.role != "admin":
+        raise HTTPException(status_code=403, detail="Admin privileges required")
+    return current_user

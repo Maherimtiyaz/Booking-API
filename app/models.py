@@ -1,4 +1,4 @@
-from sqalchemy import Column, Integer, String, Datetime, ForeignKey, UniqueConstraint
+from sqlalchemy import Column, Integer, String, Datetime, ForeignKey, UniqueConstraint
 from sqlalchemy.orm import relationship
 from app.database import Base
 from datetime import datetime
@@ -11,6 +11,7 @@ class User(Base):
     name = Column(String, nullable=False)
     email = Column(String, unique=True, index=True, nullable=False)
     hashed_password = Column(String, nullable=False)
+    role = Column(String, default="user")
     created_at = Column(Datetime, default=datetime.utcnow)
 
     bookings = relationship("Booking", back_populates="user")

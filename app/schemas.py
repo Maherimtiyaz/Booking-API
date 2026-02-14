@@ -16,9 +16,10 @@ class UserResponse(BaseModel):
     id: int
     name: str
     email: EmailStr
+    role: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 # Fitness class schemas
@@ -27,7 +28,7 @@ class ClassCreate(BaseModel):
     name: str
     datetime: datetime
     instructor: str
-    available_slots: int
+    availableSlots: int
 
 
 class ClassResponse(BaseModel):
@@ -47,3 +48,13 @@ class BookingCreate(BaseModel):
     class_id: int
     client_name: str
     client_email: EmailStr
+
+class BookingResponse(BaseModel):
+    id: int
+    user_id: int
+    class_id: int
+    client_name: str
+    client_email: EmailStr
+
+    class Config:
+        from_attributes = True
