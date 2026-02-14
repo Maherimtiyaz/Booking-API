@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Datetime, ForeignKey, UniqueConstraint
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, UniqueConstraint
 from sqlalchemy.orm import relationship
 from app.database import Base
 from datetime import datetime
@@ -12,7 +12,7 @@ class User(Base):
     email = Column(String, unique=True, index=True, nullable=False)
     hashed_password = Column(String, nullable=False)
     role = Column(String, default="user")
-    created_at = Column(Datetime, default=datetime.utcnow)
+    created_at = Column(DateTime, default=datetime.utcnow)
 
     bookings = relationship("Booking", back_populates="user")
 
@@ -24,7 +24,7 @@ class FitnessClass(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False)
-    datetime = Column(Datetime, nullable=False)
+    datetime = Column(DateTime, nullable=False)
     instructor = Column(String, nullable=False)
     available_slots = Column(Integer, nullable=False)
 
@@ -44,7 +44,7 @@ class Booking(Base):
     class_id = Column(Integer, ForeignKey("classes.id"))
     client_name = Column(String, nullable=False)
     client_email = Column(String, nullable=False)
-    created_at = Column(Datetime, default=datetime.utcnow)
+    created_at = Column(DateTime, default=datetime.utcnow)
 
     user = relationship("User", back_populates="bookings")
     fitness_class = relationship("FitnessClass", back_populates="bookings")

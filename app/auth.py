@@ -17,9 +17,9 @@ def verify_password(plain, hashed):
 
 # JWT token handling
 
-def crate_access_token(data: dict):
+def create_access_token(data: dict):
     to_encode = data.copy()
-    
+
     expire = datetime.utcnow() + timedelta(
         minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES
     )
