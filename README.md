@@ -76,3 +76,36 @@ SECRET_KEY=your_secret_key
 uvicorn main:app --reload
 
 http://127.0.0.1:8000/docs
+
+## Postman Collection
+
+You can import the full Postman collection for testing the API:
+
+1. Open Postman → File → Import
+2. Select `docs/postman/fitness_booking_api.postman_collection.json`
+3. Run requests in order:
+
+   - Auth → Signup/Login
+   - Classes → Create/Get
+   - Bookings → Book/Get
+   - Edge Cases → Unauthorized requests
+
+## Screenshots
+
+### Signup User
+![Signup](docs/postman/screenshots/signup.png)
+
+### Login User
+![Login](docs/postman/screenshots/UserLogin.png)
+
+### Create Class (Admin)
+![Create Class](docs/postman/screenshots/Booking_classes.png)
+
+### Booking Successful
+![Booking Success](docs/postman/screenshots/Get_User_booking.png)
+
+### Duplicate Booking
+![Duplicate Booking](docs/postman/screenshots/duplicate_booking.png)
+
+### Overbooking Test
+![Overbooking](docs/postman/screenshots/overbooking.png)
